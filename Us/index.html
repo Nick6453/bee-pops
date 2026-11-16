@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Us 💛</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Dancing Script", cursive;
+        background: linear-gradient(135deg, #fff6b0, #fffbe6);
+        overflow-x: hidden;
+        color: #333;
+        position: relative;
+    }
+
+    /* 🐝 Smooth Buzzing Bees */
+    .bee {
+        position: fixed;
+        pointer-events: auto;
+        cursor: pointer;
+        z-index: 10;
+        animation: buzzFly linear infinite;
+        touch-action: manipulation;
+    }
+
+    @keyframes buzzFly {
+        0% { transform: translate(-10vw, 0) scale(1); }
+        50% { transform: translate(50vw, -40px) scale(1.1); }
+        100% { transform: translate(110vw, -10px) scale(1); }
+    }
+    .bee-pop-particle {
+    position: fixed;
+    z-index: 999;
+    pointer-events: none;
+    font-size: 24px;
+    animation: beePop 900ms ease-out forwards;
+}
+
+@keyframes beePop {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.5);
+    }
+}
+
+    /* 💕 Floating Background Hearts */
+    .heart-bg {
+        position: fixed;
+        color: rgba(216, 155, 0, 0.15);
+        font-size: 24px;
+        pointer-events: none;
+        z-index: 1;
+        bottom: -50px;
+        animation: floatUp 15s linear infinite;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* HERO CONTAINER */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px 80px 20px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* ✨ Custom Title */
+    .hero h1 {
+        font-size: 85px; 
+        color: #d89b00;
+        margin: 0 0 20px 0;
+        letter-spacing: 1px;
+        transform: rotate(-2deg);
+        text-shadow: 2px 3px 6px rgba(216, 155, 0, 0.25), 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Pulsing Enter Button */
+    .btn {
+        padding: 12px 30px;
+        background: #ffd84d;
+        color: #333;
+        border: none;
+        border-radius: 30px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        font-family: "Dancing Script", cursive;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        margin-bottom: 60px;
+        animation: pulseButton 2s infinite;
+    }
+
+    .btn:hover {
+        transform: scale(1.05) !important;
+        background: #f4c542;
+        animation: none;
+    }
+
+    @keyframes pulseButton {
+        0% { transform: scale(1); box-shadow: 0 4px 15px rgba(216, 155, 0, 0.2); }
+        50% { transform: scale(1.03); box-shadow: 0 4px 25px rgba(216, 155, 0, 0.4); }
+        100% { transform: scale(1); box-shadow: 0 4px 15px rgba(216, 155, 0, 0.2); }
+    }
+
+    /* 🐱 ASYMMETRICAL CAT TRAIL LAYOUT */
+    .cats-trail {
+        position: relative;
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px; 
+    }
+
+    .trail-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 40px;
+    }
+
+    .trail-row.wide { padding: 0 10px; }
+    .trail-row.narrow { padding: 0 120px; }
+    .trail-row.mid { padding: 0 60px; }
+
+    .cat-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 5;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cat-box img {
+        width: 135px;
+        height: 135px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+        border: 5px solid #fff;
+    }
+
+    .cat-box:hover {
+        transform: scale(1.08) translateY(-5px);
+    }
+
+    .cat-box:hover img {
+        box-shadow: 0 15px 30px rgba(216, 155, 0, 0.25);
+    }
+
+    .cat-label {
+        margin-top: 8px;
+        font-size: 26px;
+        color: #d89b00;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .trail-svg-container {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 120px);
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .trail-path {
+        fill: none;
+        stroke: rgba(216, 155, 0, 0.18);
+        stroke-width: 3;
+        stroke-dasharray: 8, 8;
+    }
+
+    /* 📸 2x2 GRID FOR FLIP CARDS */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+        margin-top: 40px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 100%;
+        height: 390px;
+        perspective: 1000px;
+        cursor: pointer;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transform-style: preserve-3d;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        border-radius: 20px;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+
+    .flip-card-front {
+        background-color: #fff;
+        border: 10px solid #fff;
+    }
+
+    .photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .flip-card-back {
+        background: rgba(255, 255, 255, 0.95);
+        color: #444;
+        transform: rotateY(180deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 25px;
+        border: 4px dashed #ffd84d;
+    }
+
+    .photo-caption {
+        font-size: 21px;
+        line-height: 1.4;
+        color: #444;
+        text-align: center;
+    }
+
+    section {
+        padding: 80px 20px;
+        max-width: 900px;
+        margin: auto;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease;
+        position: relative;
+        z-index: 2;
+    }
+
+    section.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    h2 {
+        text-align: center;
+        color: #d89b00;
+        font-size: 45px;
+    }
+
+    /* 📔 STORYBOOK LAYOUT */
+    .notebook {
+        background: #fdfbf7;
+        max-width: 650px;
+        min-height: 420px; 
+        margin: 0 auto;
+        padding: 45px 50px 30px 50px;
+        border-radius: 6px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.08), 
+                    inset 25px 0 30px rgba(0,0,0,0.03), 
+                    inset -5px 0 15px rgba(0,0,0,0.02);
+        border-left: 12px solid #c58d02; 
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+    }
+
+    .notebook::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10%;
+        height: 80%;
+        width: 4px;
+        border-right: 4px dotted rgba(0,0,0,0.15);
+    }
+
+    .notebook-content {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    .notebook-page {
+        font-size: 26px;
+        line-height: 1.7;
+        color: #3d3a35;
+        text-align: left;
+        display: none; 
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        width: 100%;
+    }
+
+    .notebook-page::first-letter {
+        font-size: 60px;
+        float: left;
+        margin-top: 6px;
+        margin-right: 10px;
+        color: #d89b00;
+        line-height: 1;
+        font-weight: bold;
+    }
+
+    .notebook-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px dashed rgba(216, 155, 0, 0.25);
+    }
+
+    .page-number {
+        font-size: 18px;
+        color: #8c8475;
+        letter-spacing: 1px;
+    }
+
+    .nav-btn {
+        background: none;
+        border: none;
+        color: #d89b00;
+        font-family: "Dancing Script", cursive;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px 15px;
+        transition: all 0.3s ease;
+        border-radius: 15px;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+        background: rgba(216, 155, 0, 0.08);
+        transform: translateX(3px);
+    }
+
+    #prevBtn:hover:not(:disabled) { transform: translateX(-3px); }
+
+    .nav-btn:disabled {
+        color: #ccc;
+        cursor: not-allowed;
+    }
+
+    .final-unlock-btn {
+        background: #ffd84d !important;
+        color: #333 !important;
+        padding: 6px 20px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 4px 10px rgba(216, 155, 0, 0.3);
+        animation: miniPulse 1.5s infinite;
+    }
+
+    @keyframes miniPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.04); }
+        100% { transform: scale(1); }
+    }
+
+    /* 📖 GRAND FINALE OPEN DIARY LAYOUT */
+    .open-diary {
+        background: #fdfbf7;
+        max-width: 950px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 8px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(216, 155, 0, 0.15);
+    }
+
+    .open-diary::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 16px;
+        transform: translateX(-50%);
+        background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0.05) 100%);
+        pointer-events: none;
+    }
+
+    .diary-page {
+        padding: 45px 45px 40px 45px;
+        box-sizing: border-box;
+        font-size: 24px;
+        line-height: 1.6;
+        color: #3d3a35;
+        position: relative;
+    }
+
+    .diary-page.left-page {
+        border-right: 1px solid rgba(0,0,0,0.04);
+        background-image: linear-gradient(rgba(216, 155, 0, 0.03) 1px, transparent 1px);
+        background-size: 100% 32px;
+    }
+
+    .diary-page.right-page {
+        background: linear-gradient(135deg, #fdfbf7, #fffdf2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .diary-heading {
+        font-size: 32px;
+        color: #c58d02;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 1px dashed rgba(216, 155, 0, 0.2);
+        padding-bottom: 8px;
+    }
+
+    /* 🏷️ STICKER BUTTON */
+    .secret-sticker {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 6px 18px;
+        background: #fff0f5;
+        border: 2px dashed #ffb6c1;
+        border-radius: 20px;
+        color: #de5d83;
+        font-size: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 2px 4px 10px rgba(0,0,0,0.05);
+        animation: miniWobble 2.5s infinite ease-in-out;
+    }
+
+    .secret-sticker:hover {
+        transform: scale(1.08) rotate(-2deg);
+        background: #ffe4e1;
+    }
+
+    @keyframes miniWobble {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(3deg) scale(1.02); }
+    }
+
+    /* 🎈 BUBBLE GUM POPUP BOX */
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-card {
+        background: #fff;
+        padding: 40px;
+        border-radius: 24px;
+        width: 90%;
+        max-width: 450px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        position: relative;
+        transform: translateY(30px);
+        transition: transform 0.4s ease;
+    }
+
+    .modal-overlay.active .modal-card { transform: translateY(0); }
+
+    .close-modal-btn {
+        position: absolute;
+        top: 15px; right: 20px;
+        font-size: 24px; color: #aaa; cursor: pointer;
+        transition: 0.2s;
+    }
+    .close-modal-btn:hover { color: #555; }
+
+    /* 🐾 CUSTOM VECTOR CAT */
+    .animation-stage {
+        height: 190px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .custom-cat {
+        width: 140px;
+        height: 130px;
+        background: #eef2f5;
+        border-radius: 50% 50% 45% 45%;
+        position: relative;
+        box-shadow: inset -10px -10px 0px rgba(220, 228, 235, 0.5);
+        transition: transform 0.2s ease;
+    }
+
+    .ear {
+        width: 0; height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 40px solid #eef2f5;
+        position: absolute;
+        top: -15px;
+    }
+    .ear.left { left: 5px; transform: rotate(-20deg); }
+    .ear.right { right: 5px; transform: rotate(20deg); }
+    
+    .ear::after {
+        content: '';
+        width: 0; height: 0;
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-bottom: 25px solid #ffb6c1;
+        position: absolute;
+        top: 10px; left: -14px;
+    }
+
+    .eye {
+        width: 14px; height: 14px;
+        background: #2c3e50;
+        border-radius: 50%;
+        position: absolute;
+        top: 48px;
+        transition: all 0.2s ease;
+    }
+    .eye.left { left: 32px; }
+    .eye.right { right: 32px; }
+
+    .eye::after {
+        content: '';
+        width: 4px; height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px; left: 3px;
+    }
+
+    .blush {
+        width: 20px; height: 10px;
+        background: rgba(255, 182, 193, 0.7);
+        border-radius: 50%;
+        position: absolute;
+        top: 64px;
+    }
+    .blush.left { left: 18px; }
+    .blush.right { right: 18px; }
+
+    .nose {
+        width: 10px; height: 7px;
+        background: #e57373;
+        border-radius: 50% 50% 40% 40%;
+        position: absolute;
+        top: 58px; left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .paw {
+        width: 24px; height: 24px;
+        background: #eef2f5;
+        border-radius: 50%;
+        position: absolute;
+        bottom: -5px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+    .paw.left { left: 25px; }
+    .paw.right { right: 25px; }
+
+    .bubble-gum {
+        position: absolute;
+        background: rgba(255, 158, 187, 0.9);
+        border-radius: 50%;
+        width: 8px; height: 8px;
+        left: 50%; top: 68px;
+        transform: translateX(-50%);
+        z-index: 10;
+        opacity: 0;
+        border: 2px solid #ff7fa3;
+    }
+
+    .modal-overlay.active .bubble-gum {
+        animation: blowAndPop 3.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes blowAndPop {
+        0% { opacity: 1; width: 8px; height: 8px; top: 68px; }
+        75% { opacity: 1; width: 95px; height: 95px; top: 30px; }
+        83% { opacity: 1; width: 105px; height: 105px; top: 25px; }
+        85% { opacity: 0; width: 130px; height: 130px; top: 10px; transform: translateX(-50%) scale(1.1); }
+        100% { opacity: 0; width: 0; height: 0; }
+    }
+
+    .modal-overlay.active .cat-shocked {
+        animation: catJump 0.3s linear forwards;
+        animation-delay: 2.95s;
+    }
+
+    @keyframes catJump {
+        0% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-15px) scale(1.05); }
+        100% { transform: translateY(0) scale(1); }
+    }
+
+    .modal-overlay.active .cat-shocked .eye {
+        height: 16px; width: 16px; top: 44px;
+        background: #000;
+    }
+    .modal-overlay.active .cat-shocked .eye::after {
+        width: 7px; height: 7px; top: 2px; left: 2px;
+    }
+    .modal-overlay.active .cat-shocked .paw {
+        transform: translateY(-12px) scale(1.1);
+    }
+
+    .revealed-text {
+        font-size: 32px;
+        color: #de5d83;
+        line-height: 1.4;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.6s ease;
+        margin-top: 15px;
+    }
+
+    .revealed-text.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+        .open-diary { grid-template-columns: 1fr; max-width: 550px; }
+        .open-diary::after { display: none; }
+        .diary-page.left-page { border-right: none; border-bottom: 2px dashed rgba(216, 155, 0, 0.15); }
+    }
+
+    @media (max-width: 768px) {
+        .trail-svg-container { display: none; }
+        .trail-row.wide, .trail-row.narrow, .trail-row.mid { padding: 0 10px; }
+        .cats-trail { gap: 30px; }
+        .cat-box img { width: 110px; height: 110px; }
+        .cat-label { font-size: 22px; }
+        .gallery { grid-template-columns: 1fr; gap: 30px; max-width: 340px; }
+        .flip-card { height: 360px; }
+        .photo-caption { font-size: 19px; }
+        .hero h1 { font-size: 60px; }
+        .notebook { padding: 30px 25px 20px 30px; min-height: 470px; }
+        .notebook-page { font-size: 21px; line-height: 1.6; }
+        .notebook-page::first-letter { font-size: 45px; margin-top: 4px; }
+        .nav-btn { font-size: 21px; }
+        .diary-page { padding: 35px 25px; font-size: 21px; }
+        .diary-heading { font-size: 28px; }
+    }
+    /* 🍯 Honey Voice Note */
+.voice-note {
+    margin-top: 20px;
+    width: 100%;
+    background: linear-gradient(135deg, #fff9d6, #fffef0);
+    border: 3px dashed #ffd84d;
+    border-radius: 25px;
+    padding: 18px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 8px 20px rgba(216,155,0,0.12);
+    transition: 0.3s ease;
+}
+
+.voice-note:hover {
+    transform: translateY(-2px);
+}
+
+.voice-title {
+    color: #d89b00;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.voice-subtitle {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-family: sans-serif;
+}
+
+.voice-btn {
+    background: #ffd84d;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-size: 22px;
+    cursor: pointer;
+    font-family: "Dancing Script", cursive;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(216,155,0,0.2);
+}
+
+.voice-btn:hover {
+    transform: scale(1.05);
+    background: #f4c542;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+function createBee(){
+    const bee = document.createElement("div");
+    bee.className = "bee";
+
+    bee.innerHTML = `
+    <svg viewBox="0 0 64 64" width="40" height="40">
+        <ellipse cx="32" cy="34" rx="14" ry="18" fill="#f4c542"/>
+        <rect x="25" y="20" width="4" height="28" fill="#000"/>
+        <rect x="33" y="20" width="4" height="28" fill="#000"/>
+        <ellipse cx="22" cy="18" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+        <ellipse cx="42" cy="18" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+    </svg>
+    `;
+
+    bee.style.top = Math.random() * 80 + "vh";
+    bee.style.animationDuration = (8 + Math.random() * 7) + "s";
+    bee.style.animationDelay = (Math.random() * 6) + "s";
+
+    document.body.appendChild(bee);
+}
+
+
+function createBee(){
+    const bee = document.createElement("div");
+    bee.className = "bee";
+
+    bee.innerHTML = `
+    <svg viewBox="0 0 64 64" width="40" height="40">
+        <ellipse cx="32" cy="34" rx="14" ry="18" fill="#f4c542"/>
+        <rect x="25" y="20" width="4" height="28" fill="#000"/>
+        <rect x="33" y="20" width="4" height="28" fill="#000"/>
+        <ellipse cx="22" cy="18" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+        <ellipse cx="42" cy="18" rx="10" ry="6" fill="rgba(255,255,255,0.6)"/>
+    </svg>
+    `;
+
+    bee.style.top = Math.random() * 80 + "vh";
+    bee.style.animationDuration = (8 + Math.random() * 7) + "s";
+    bee.style.animationDelay = (Math.random() * 6) + "s";
+
+    bee.addEventListener("click", () => popBee(bee));
+
+    document.body.appendChild(bee);
+}
+
+function popBee(bee) {
+    const rect = bee.getBoundingClientRect();
+
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement("div");
+        particle.className = "bee-pop-particle";
+        particle.textContent = Math.random() > 0.5 ? "💛" : "🍯";
+
+        particle.style.left = rect.left + "px";
+        particle.style.top = rect.top + "px";
+        particle.style.setProperty("--x", (Math.random() * 160 - 80) + "px");
+        particle.style.setProperty("--y", (Math.random() * 160 - 80) + "px");
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => particle.remove(), 900);
+    }
+
+    bee.remove();
+
+    setTimeout(() => createBee(), 450);
+}
+
+for(let i = 0; i < 5; i++){
+    createBee();
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart-bg";
+    heart.innerHTML = "💛";
+    
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (10 + Math.random() * 10) + "s";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    
+    document.body.appendChild(heart);
+    
+    setTimeout(() => { heart.remove(); }, 20000);
+}
+
+setInterval(createHeart, 1200);
+for(let i=0; i<8; i++) { setTimeout(createHeart, Math.random() * 5000); }
+</script>
+
+<div class="hero">
+    <h1>Just Us 🪐💛</h1>
+    <button class="btn" onclick="openSite()">
+        Enter our world 💛
+    </button>
+
+    <div class="cats-trail">
+        
+        <svg class="trail-svg-container" viewBox="0 0 1000 700" preserveAspectRatio="none">
+            <path class="trail-path" d="M 120,65 Q 500,100 880,150" />
+            <path class="trail-path" d="M 880,150 Q 500,210 200,240" />
+            <path class="trail-path" d="M 200,240 Q 500,310 800,330" />
+            <path class="trail-path" d="M 800,330 Q 500,410 70,430" />
+            <path class="trail-path" d="M 70,430 Q 500,510 930,520" />
+        </svg>
+        
+        <div class="trail-row wide">
+            <div class="cat-box">
+                <img src="cat1.jpg" alt="Me">
+                <div class="cat-label">me</div>
+            </div>
+            <div class="cat-box">
+                <img src="cat2.jpg" alt="You">
+                <div class="cat-label">you</div>
+            </div>
+        </div>
+
+        <div class="trail-row narrow">
+            <div class="cat-box">
+                <img src="cat3.jpg" alt="Goofy Cat 2">
+                <div class="cat-label">🥜🦖</div>
+            </div>
+            <div class="cat-box">
+                <img src="cat4.jpg" alt="Cute Cat 2">
+                <div class="cat-label">our lil 💩</div>
+            </div>
+        </div>
+
+        <div class="trail-row mid">
+            <div class="cat-box">
+                <img src="cat5.jpg" alt="Goofy Cat 3">
+                <div class="cat-label">🤪</div>
+            </div>
+            <div class="cat-box">
+                <img src="cat6.jpg" alt="Cute Cat 3">
+                <div class="cat-label">🥰</div>
+            </div>
+        </div>
+
+        <div class="trail-row wide">
+            <div class="cat-box">
+                <img src="cat7.jpg" alt="Goofy Cat 4">
+                <div class="cat-label">🤪</div>
+            </div>
+            <div class="cat-box">
+                <img src="cat10.jpg" alt="Cute Cat 4">
+                <div class="cat-label">🥰</div>
+            </div>
+        </div>
+
+        <div class="trail-row narrow">
+            <div class="cat-box">
+                <img src="cat8.jpg" alt="Goofy Cat 5">
+                <div class="cat-label">🤪</div>
+            </div>
+            <div class="cat-box">
+                <img src="cat9.jpg" alt="Cute Cat 5">
+                <div class="cat-label">🥰</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<section id="s1">
+    <h2>Our Moments 📸</h2>
+    
+    <div class="gallery">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="photo" src="photo1.jpg" alt="Our Memory 1">
+                </div>
+                <div class="flip-card-back">
+                    <div class="photo-caption">
+                        "I still remember I woke up and you were holding me so tight i took a pic and its one of my best pics."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="photo" src="photo2.jpg" alt="Our Memory 2">
+                </div>
+                <div class="flip-card-back">
+                    <div class="photo-caption">
+                        "This moment was funny because you were supposed to take pic of us but you were laughing the whole time and i was trying to kiss you, this was cute and funny"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="photo" src="photo3.jpg" alt="Our Memory 3">
+                </div>
+                <div class="flip-card-back">
+                    <div class="photo-caption">
+                        "im glad i went to the carnival with you this day even though i was late still we were able to be there on time, all the rides we went it was fun, the boba, stuffed animals, it was a beautiful day my love"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img class="photo" src="photo4.jpg" alt="Our Memory 4">
+                </div>
+                <div class="flip-card-back">
+                    <div class="photo-caption">
+                        "This was funny but also lil bit sad because you hurt yourself with my bracelet while you were mega knighting me, but after this we had a good day together and wont ever forget this."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="s2">
+    <h2>What I Feel 💌</h2>
+    
+    <div class="notebook" id="letterNotebook">
+        <div class="notebook-content">
+            <div class="notebook-page" id="page-0" style="display: block; opacity: 1;">The plan was never to fall in love. I told myself I wouldn’t let someone get that close to me, wouldn’t let my heart depend on another person so deeply. But then you showed up with your beautiful eyes, your irresistible smile, and this way of making everything around me feel lighter without even trying. Somehow, little by little, you became the best part of my days. Before I realized it, you were already the first thing on my mind when I woke up and the last thing I thought about before sleeping.</div>
+            <div class="notebook-page" id="page-1">There’s something so beautiful about waking up knowing someone like you exists in my life. Even when we’re far apart, I still feel connected to you in every little moment. It’s in the random thoughts throughout my day, the songs that remind me of you, the way your laugh replays in my head when things get quiet. Loving you doesn’t feel forced or complicated. It feels natural, like my heart somehow always knew it would find its way to you.</div>
+            <div class="notebook-page" id="page-2">I fell in love with you because you brought back my smile when I didn’t even realize how much I had lost it. You made me understand what real love is supposed to feel like — safe, comforting, honest, and soft. With you, I never feel like I have to hide who I am. You make me feel cared for in ways words can barely explain. You became my peace without even trying, and that’s something I’ll forever be grateful for.</div>
+            <div class="notebook-page" id="page-3">How could I not love you when you are all I can think about? Sometimes I try to find the perfect words to explain what you mean to me, but every sentence feels too small compared to the way I actually feel. No matter how hard I try, I don’t think words will ever fully capture how much you’ve changed my life just by being in it. But even if I never find the perfect way to describe it, I’ll spend the rest of my life searching for those words, because you deserve to know every single day how loved you are.</div>
+            <div class="notebook-page" id="page-4">And when I’m with you, my heart beats stronger. With you, it’s never just a small moment — with you, everything feels endless. Every second with you becomes something I wish I could hold onto forever. And maybe that’s what love truly is: finding one person who makes time feel softer, life feel warmer, and the future feel beautiful. That’s what you are to me. You are the kind of love people write stories about, the kind of feeling that stays in someone’s heart forever.</div>
+        </div>
+
+        <div class="notebook-controls">
+            <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled>← Back</button>
+            <span class="page-number" id="pageIdx">Page 1 of 5</span>
+            <button class="nav-btn" id="nextBtn" onclick="changePage(1)">But then you showed up... 💛</button>
+        </div>
+    </div>
+</section>
+
+<section id="s3">
+    <h2>Forever 🌼</h2>
+    <div class="open-diary">
+        <div class="diary-page left-page">
+            <div class="diary-heading">Right Now... 💛</div>
+            People always talk about the honeymoon phase, saying that feelings like this eventually fade or change. But I want to promise you something, my love: the Nick you see right now isn’t a temporary version of me. This is just who I am when it comes to you. Even when the honeymoon phase is long over, my heart is going to stay exactly right here, loving you, protecting you, and choosing you every single day.
+        </div>
+        
+        <div class="diary-page right-page">
+            <div>
+                <div class="diary-heading">...And Always ✨</div>
+                I hope you always know just how truly glad I am to have you. You are my peace, and my biggest fear is ever losing you. When I look at the future, I see us. I see us building our lives together, hitting our goals side by side, and growing closer through every single chapter. No matter where life takes us, I know I want you right by my side.
+            </div>
+            
+            <div style="margin-top: 25px; display: flex; flex-direction: column; align-items: flex-start;">
+                <div>
+                    <span style="display: block; font-style: italic; color: #666; font-size: 22px;">Forever yours,</span>
+                    <span style="display: block; font-size: 45px; color: #d89b00; padding-top: 5px; padding-left: 15px; transform: rotate(-1.5deg); display: inline-block;">Nick 💛</span>
+                </div>
+                <div class="voice-note">
+                <div class="voice-title">🍯 One More Thing...</div>
+
+                <div class="voice-subtitle">
+                    a little piece of my heart 💛
+                </div>
+
+                <button class="voice-btn" onclick="playVoice()">
+                    🐝 Open My Voice
+                </button>
+
+                <audio id="loveAudio">
+                <source src="goodboy.m4a" type="audio/mp4">
+                </audio>
+            </div>
+                <button class="secret-sticker" onclick="triggerGumSecret()">
+                    Press here mi amor 🐾
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="gumModal">
+    <div class="modal-card">
+        <span class="close-modal-btn" onclick="closeGumSecret()">&times;</span>
+        <div class="animation-stage">
+            <div class="custom-cat" id="interactiveCat">
+                <div class="ear left"></div><div class="ear right"></div>
+                <div class="eye left"></div><div class="eye right"></div>
+                <div class="blush left"></div><div class="blush right"></div>
+                <div class="nose"></div>
+                <div class="paw left"></div><div class="paw right"></div>
+                <div class="bubble-gum" id="gumBubble"></div>
+            </div>
+        </div>
+        <div class="revealed-text" id="secretMsg">
+            i love you so much mi amor con todo mi corazon 💖
+        </div>
+    </div>
+</div>
+
+<script>
+function openSite(){
+    document.querySelectorAll("section").forEach((sec, i)=>{
+        setTimeout(()=>{ sec.classList.add("show"); }, i * 200);
+    });
+    setTimeout(() => { document.getElementById("s1").scrollIntoView({behavior:"smooth"}); }, 100);
+}
+
+let currentPage = 0;
+const totalPages = 5;
+const buttonTitles = [
+    "But then you showed up... 💛",
+    "We feel so close... 📸",
+    "You brought back my smile... 😊",
+    "I have no words... 💌",
+    "Open My Heart 🌼"
+];
+
+function changePage(direction) {
+    if (currentPage === totalPages - 1 && direction === 1) {
+        document.getElementById("s3").scrollIntoView({ behavior: "smooth" });
+        return;
+    }
+    const currentTarget = document.getElementById(`page-${currentPage}`);
+    const notebookEl = document.getElementById("letterNotebook");
+    notebookEl.style.transform = "scale(0.98) rotate(0.5deg)";
+    currentTarget.style.opacity = 0;
+    
+    setTimeout(() => {
+        currentTarget.style.display = 'none';
+        currentPage += direction;
+        const nextTarget = document.getElementById(`page-${currentPage}`);
+        nextTarget.style.display = 'block';
+        nextTarget.style.opacity = 1;
+        
+        setTimeout(() => { notebookEl.style.transform = "scale(1) rotate(0deg)"; }, 20);
+        document.getElementById("pageIdx").innerText = `Page ${currentPage + 1} of ${totalPages}`;
+        document.getElementById("prevBtn").disabled = (currentPage === 0);
+        
+        const nextBtn = document.getElementById("nextBtn");
+        nextBtn.innerText = buttonTitles[currentPage] || "Next →";
+        if (currentPage === totalPages - 1) { nextBtn.classList.add("final-unlock-btn"); }
+        else { nextBtn.classList.remove("final-unlock-btn"); }
+    }, 300); 
+}
+
+let secretTimeout;
+function triggerGumSecret() {
+    const overlay = document.getElementById("gumModal");
+    const cat = document.getElementById("interactiveCat");
+    const message = document.getElementById("secretMsg");
+    cat.classList.remove("cat-shocked");
+    message.classList.remove("visible");
+    overlay.classList.add("active");
+    secretTimeout = setTimeout(() => {
+        cat.classList.add("cat-shocked");
+        message.classList.add("visible");
+    }, 2950);
+}
+function closeGumSecret() {
+    document.getElementById("gumModal").classList.remove("active");
+    clearTimeout(secretTimeout);
+}
+function playVoice() {
+    const audio = document.getElementById("loveAudio");
+
+    audio.currentTime = 0;
+
+    audio.play().catch(error => {
+        alert("Audio couldn't play: " + error);
+    });
+}
+</script>
+
+</body>
+</html>
